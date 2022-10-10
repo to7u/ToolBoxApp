@@ -1,0 +1,30 @@
+■wgetコマンドメモ
+
+・オプション
+-r
+再帰的クローリング
+
+-l
+階層指定
+-l 1でカレントのみ対象
+-l 0で全階層を対象
+ 
+-p
+画像ファイルも併せて取得
+
+-k
+ローカル参照ようにファイルパスを絶対から相対に変換する
+
+-w  N：ダウンロードごとにN秒待つ
+--random-wait：-wで指定した数の0.5〜1.5倍の時間待つ
+
+memo:
+・全体取得
+wget -r -l 0 -w 5 --random-wait -p -k <site url>
+
+・カレントのみ取得
+wget -r -l 1 -w 5 --random-wait -p -k <site url>
+
+◾︎wget
+
+wget -A .jpg,.jpeg,.gif,.png,.bmp,.css,.js,.xml
