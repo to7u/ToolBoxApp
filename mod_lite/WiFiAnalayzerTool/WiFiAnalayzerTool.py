@@ -4,7 +4,7 @@ class WiFiAnalayzerTool:
   def LinuxWiFiScan(self):
     wifi_scan_all_cmd = 'sh WiFiAnalayzer.sh'
     wifi_scan_wep_cmd = 'sh WiFiAnalayzerWEP.sh'
-    menu_text = """/
+    menu_text = """
 === set_sifi_mac menu ===
 [1] : wifi scan all
    Scan all access point.
@@ -31,7 +31,7 @@ class WiFiAnalayzerTool:
         print('Enter it again')
 
   def run(self):
-    self.run()
+    self.LinuxWiFiScan()
 
 if __name__ == "__main__":
   WiFi_analayzer_tool = WiFiAnalayzerTool()
