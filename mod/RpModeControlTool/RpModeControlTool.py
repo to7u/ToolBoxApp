@@ -10,16 +10,16 @@ moduleとして呼び出す際にはpathに関して改修が必要になる
 '''
 
 class RpModeControlTool:
-    cmd_ap_open = "sh ./script/ApOpen.sh"
-    cmd_ap_close = "sh ./script/ApClose.sh"
-    cmd_createap_start = "sh ./script/CreateApStart.sh"
-    cmd_createap_stop = "sh ./script/CreateApStop.sh"
-    cmd_ufw_disable = "sh ./script/UfwDisable.sh"
-    cmd_ufw_enable = "sh ./script/UfwEnable.sh"
-    cmd_macchange_random_wlan0 = "sh ./script/MacchangeRandom_wlan0.sh"
-    cmd_macchange_random_wlan1 = "sh ./script/MacchangeRandom_wlan1.sh"
-    cmd_macchange_return_wlan0 = "sh ./script/MacchangeReturn_wlan0.sh"
-    cmd_macchange_return_wlan1 = "sh ./script/MacchangeReturn_wlan1.sh"
+    cmd_ap_open = ["sudo", "./script/ApOpen.sh"]
+    cmd_ap_close = ["sudo", "./script/ApClose.sh"]
+    cmd_createap_start = ["sudo", "./script/CreateApStart.sh"]
+    cmd_createap_stop = ["sudo", "./script/CreateApStop.sh"]
+    cmd_ufw_disable = ["sudo", " ./script/UfwDisable.sh"]
+    cmd_ufw_enable = ["sudo", "./script/UfwEnable.sh"]
+    cmd_macchange_random_wlan0 = ["sudo", "./script/MacchangeRandom_wlan0.sh"]
+    cmd_macchange_random_wlan1 = ["sudo", "./script/MacchangeRandom_wlan1.sh"]
+    cmd_macchange_return_wlan0 = ["sudo","./script/MacchangeReturn_wlan0.sh"]
+    cmd_macchange_return_wlan1 = ["sudo", "./script/MacchangeReturn_wlan1.sh"]
 
     menu_msg = '''
 [Mode Change Menu]
@@ -51,10 +51,16 @@ MAC  : wlan0,1
 '''
 
     def private_mode(self):
-        subprocess.run(cmd_ap_close,shell=True)
-        subprocess.run(cmd_ufw_disable,shell=True)
-        subprocess.run(cmd_macchange_return_wlan0,shell=True)
-        subprocess.run(cmd_macchange_return_wlan1,shell=True)
+        #subprocess.run(cmd_ap_close,shell=True)
+        #subprocess.run(cmd_ufw_disable,shell=True)
+        #subprocess.run(cmd_macchange_return_wlan0,shell=True)
+        #subprocess.run(cmd_macchange_return_wlan1,shell=True)
+
+        subprocess.Popen(cmd_ap_close, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.Popen(cmd_ufw_disable, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.Popen(cmd_macchange_return_wlan0, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.Popen(cmd_macchange_return_wlan1, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
     def public_mode(self):
         subprocess.run(cmd_ap_close,shell=True)
         subprocess.run(cmd_ufw_enable,shell=True)
