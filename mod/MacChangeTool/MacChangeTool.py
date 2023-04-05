@@ -1,117 +1,114 @@
 import subprocess
-import re
-import os
-import netifaces
 
+# MACアドレス変更用スクリプト
+# macchangerツールをsubprocessで呼び出して実行する
 '''
-macchanger未使用パターンスクリプト
+■ MacChanger 使い方
+
+●現在状態の確認
+$ macchanger -s {対象インターフェース}
+
+●ランダムな MAC アドレスに設定
+$ ifconfig {対象インターフェース} down
+$ macchanger -r {対象インターフェース}
+$ ifconfig {対象インターフェース} up
+
+●元に戻す
+$ ifconfig {対象インターフェース} down
+$ macchanger -p {対象インターフェース}
+$ ifconfig {対象インターフェース} up
+
+●指定の MAC アドレスに設定
+$ ifconfig {対象インターフェース} down
+$ macchanger -m 00:11:22:33:44:55 {対象インターフェース}
 '''
 
 class MacChangeTool:
-	# クラス変数
-	save_path = './'
+    def interface_down(self, interface):
+        cmd = f"ifconfig {interface} down"
+        subprocess.run(cmd, shell=True)
 
-	def save_default_mac(self,target):
-		#デフォルトのinterfaceを別ファイルへ保存(change実行時のみ)→return_macメソッドにて再利用する
-		save_file_name = 'default_mac_address_' + target + '.txt'
+    def interface_up(self, interface):
+        cmd = f"ifconfig {interface} up"
+        subprocess.run(cmd, shell=True)
 
-		if os.path.exists(self.save_path + save_file_name):
-			print("The save process was skipped.")
-		else:
-			print("The save process was executed.")
-			interface_address_data = netifaces.ifaddresses(target)
-			mac_address   = interface_address_data[netifaces.AF_LINK][0]['addr']
-			print("default mac address : " + mac_address)
-			f = open(self.save_path + save_file_name, 'w')
-			f.write(mac_address)
-			f.close()
-        
-		
-	def show_interface(self):
-		result_interface = subprocess.run('ifconfig',shell=True)
-		print(result_interface)
-	
-	def select_interface(self):
-		interface_name_data = netifaces.interfaces()
+    def show_mac(self, interface):
+        cmd = f"macchanger -s {interface}"
+        subprocess.run(cmd, shell=True)
 
-		while True:
-			target = input('Please select the target interface : ')
-			for interface_name in interface_name_data:
-				if interface_name == target:
-					return target
-					break
-			print("Please enter the correct interface name.")
-	
-	# interfaceのdown/upは管理者権でのみ実行可能
-	# macchengerコマンドはinterfaceがdownしていると機能しない
-	def down_interface(self,target):
-		down_cmd = 'ifconfig ' + target + ' down'
-		print(down_cmd)
-		subprocess.run(down_cmd,shell=True)
-		
-	def up_interface(self,target):
-		up_cmd = 'ifconfig ' + target + ' up'
-		print(up_cmd)
-		subprocess.run(up_cmd,shell=True)
-		
-	def change_mac(self,target):
-		change_cmd = 'macchanger -r ' + target
-		show_cmd = 'macchanger -s ' + target
-		print(change_cmd)
-		subprocess.run(change_cmd,shell=True)
-		subprocess.run(show_cmd,shell=True)
-	
-	# TODO chenge処理を行なっていないインターフェースを選択するとデフォルトmacファイルがないためエラーになる
-	#　save_default_macメソッドで保存した別ファイルから読み込む
-	def return_mac(self,target):
-		save_file_name = 'default_mac_address_' + target + '.txt'
-		show_cmd = 'macchanger -s ' + target
-		with open(self.save_path + save_file_name) as f:
-			default_mac_address = f.read()
-			#print(default_mac_address)
-		return_cmd = 'macchanger -m ' + default_mac_address + ' '    + target
-		print(return_cmd)
-		subprocess.run(return_cmd,shell=True)
-		subprocess.run(show_cmd,shell=True)
-	
-	def run(self):
-		# cheange or returnかは選択式で処理を分岐する
-		# メニュー選択しを表示
-		menu_msg = """
-[Mac Changer Controller Menu]
+    def change_mac(self, interface, address):
+        cmd = f"macchanger -m {address} {interface}"
+        subprocess.run(cmd, shell=True)
+    
+    def change_mac_random(self, interface):
+        cmd = f"macchanger -r {interface}"
+        subprocess.run(cmd, shell=True)
+    
+    def change_default(self, interface):
+        cmd = f"macchanger -p {interface}"
+        subprocess.run(cmd, shell=True)
+    
+    def run(self):
+        menu_msg = '''/
+[Mac Change Tool Menu]
 
-[1] : Change mac address
-[2] : Return Mac address
+[1] : Show status
+[2] : Change MAC address
+[3] : Change random MAC address
+[4] : Change default MAC address
 
 [q] : quit
-"""
-		print(menu_msg)
-		while True:
-			answer = input('Please select a menu : ')
-			if answer == "1":
-				print("The selected menu is : 1")
-				self.show_interface()
-				target = self.select_interface()
-				print("target mac address is : " + target)
-				self.save_default_mac(target)
-				#self.down_interface(target)
-				self.change_mac(target)
-				#self.up_interface(target)
-				break
-			elif answer == "2":
-				print("The selected menu is : 2")
-				self.show_interface()
-				target = self.select_interface()
-				print("target interface is : " + target)
-				#self.down_interface(target)
-				self.return_mac(target)
-				#self.up_interface(target)
-				break
-			elif answer == "q":
-				print("The selected menu is : q")
-				print("Exited the process.")
-				break
+'''     
+        print(menu_msg)
+        while True:
+            answer = input('Please select a menu : ')
+            if answer == '1':
+                # show_mac
+                interface = input('Enter interface name : ')
+                try:
+                    self.show_mac(interface)
+                    break
+                except:
+                    print("command execution failed")
+                    break
+            elif answer == '2':
+                # change_mac
+                interface = input('Enter interface name : ')
+                address = input('Enter MAC address : ')
+                try:
+                    self.interface_down(interface)
+                    self.change_mac(interface, address)
+                    self.interface_up(interface)
+                    break
+                except:
+                    print("command execution failed")
+                    break
+            elif answer == '3':
+                # change_mac_random
+                interface = input('Enter interface name : ')
+                try:
+                    self.interface_down(interface)
+                    self.change_mac_random(interface)
+                    self.interface_up(interface)
+                    break
+                except:
+                    print("command execution failed")
+                    break
+            elif answer == '4':
+                # change_mac_default
+                interface = input('Enter interface name : ')
+                try:
+                    self.interface_down(interface)
+                    self.change_default(interface)
+                    self.interface_up(interface)
+                    break
+                except:
+                    print("command execution failed")
+                    break
+            elif answer == 'q':
+                break
+
 
 if __name__ == "__main__":
-	mac_changer_tool = MacChangeTool()
-	mac_changer_tool.run()
+    mac_change_tool = MacChangeTool()
+    mac_change_tool.run()

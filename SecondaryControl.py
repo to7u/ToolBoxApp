@@ -14,24 +14,14 @@ class MainControl:
 [1] : WebScrapingTool
 [2] : WgetTool
 
-[Configuration tools]
-[3] : FireWallTool
-[4] : IpChengerTool
-[5] : MacChengerTool
-[6] : TorConfigTool
-
 [Convenient tools]
-[7] : WiFiAnalyzerTool
-[8] : FileEditTool
-
-[*** Future release tools ***]
-[] : TorScrapingTool
-[] : NmapScanTool
+[3] : WiFiAnalyzerTool
+[4] : FileEditTool
 
 [Others]
 [h] : help
 [q] : quit
- 
+
 ==============================
 """
     help_msg = """
@@ -43,26 +33,11 @@ class MainControl:
 [2] : WgetTool
 対象URLを指定しサイト全体または、1階層のみを取得する
 
-[Configuration tools]
-[3] : FireWallTool
-ファイアーウォールのON/OFF,設定投入を行う
-(対応OS : Linux,Mac)
-
-[4] : IpChengerTool
-対象インターフェースを指定しIPアドレスを変更する
-固定/自動による設定が可能
-
-[5] : MacChengerTool
-対象インターフェースを指定しMACアドレスを変更する
-
-[6] : TorConfigTool
-作成済み設定ファイルを読み込み、Tor Browserの接続ノード設定を変更する
-
 [Convenient tools]
-[7] : WiFiAnalyzerTool
+[3] : WiFiAnalyzerTool
 周辺のWiFiをスキャンしリアルタイムに詳細を表示する
 
-[8] : FileEditTool
+[4] : FileEditTool
 ・rename tool
 srcディレクトリに存在するァイルの名称を"指定のもの + 連番"に変更しdstディレクトリへコピーする
 ・rename_random_auto tool
@@ -99,42 +74,14 @@ srcディレクトリに存在するァイルの名称をランダムなもの�
                 print('Processing completed : ' + wget_tool.__class__.__name__)
                 continue
             elif select_num == '3':
-                # [3] : FireWallTool
-                firewall_tool = mod.FirewallTool()
-                print('Selected tool : ' + firewall_tool.__class__.__name__)
-                firewall_tool.run()
-                print('Processing completed : ' + firewall_tool.__class__.__name__)
-                continue
-            elif select_num == '4':
-                # [4] : IpChengerTool
-                ip_chenger_tool = mod.IpChangeTool()
-                print('Selected tool : ' + ip_chenger_tool.__class__.__name__)
-                ip_chenger_tool.run()
-                print('Processing completed : ' + ip_chenger_tool.__class__.__name__)
-                continue
-            elif select_num == '5':
-                # [5] : MacChengerTool
-                mac_chenger_tool = mod.MacChangeTool()
-                print('Selected tool : ' + mac_chenger_tool.__class__.__name__)
-                mac_chenger_tool.run()
-                print('Processing completed : ' + mac_chenger_tool.__class__.__name__)
-                continue
-            elif select_num == '6':
-            	# [6] : TorConfigTool
-                tor_config_tool = mod.TorConfigTool()
-                print('Selected tool : ' + tor_config_tool.__class__.__name__)
-                tor_config_tool.run()
-                print('Processing completed : ' + tor_config_tool.__class__.__name__)
-                continue
-            elif select_num == '7':
-                # [7] : WiFiAnalyzerTool
+                # [3] : WiFiAnalyzerTool
                 wifi_analyzer_tool = mod.WiFiAnalayzerTool()
                 print('Selected tool : ' + wifi_analyzer_tool.__class__.__name__)
                 wifi_analyzer_tool.run()
                 print('Processing completed : ' + wifi_analyzer_tool.__class__.__name__)
                 continue
-            elif select_num == '8':
-                # [8] : FileEditTool
+            elif select_num == '4':
+                # [4] : FileEditTool
                 file_edit_tool = mod.FileEditTool()
                 print('Selected tool : ' + file_edit_tool.__class__.__name__)
                 file_edit_tool.run()

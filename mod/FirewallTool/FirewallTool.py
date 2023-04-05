@@ -12,7 +12,7 @@ class FirewallTool:
         elif pf == 'Linux':
             print('on Linux')
         return pf
-  
+
     def linux_conf(self):
         show_cmd = 'systemctl is-active ufw'
         show_rule_cmd = 'ufw status verbose'

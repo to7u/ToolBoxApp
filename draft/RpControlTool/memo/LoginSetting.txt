@@ -1,0 +1,8 @@
+●ログイン禁止/復帰 設定
+こっちの設定導入のほうがよいかと思う
+
+・ログイン禁止設定
+$ sudo usermod -s /bin/false kali
+
+・ログイン許可設定
+$ sudo usermod -s /bin/bash kali
