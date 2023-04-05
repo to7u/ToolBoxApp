@@ -1,0 +1,23 @@
+■WiFi open 手順
+1.Wlan0,1に対してmacchangerを実行
+MacchangeReturn_{interface}.sh
+
+2.wlan0をFreeWiFiへ接続
+WiFiSetting.py
+
+3.wlan1をcreate_apにてFreeWiFiとして開放する
+CreateAp_{action}.sh
+
+
+■config
+/etc/create_ap
+
+■start
+sudo systemctl start create_ap
+
+■stop
+sudo systemctl stop create_ap
+
+■nmcli scan WiFi
+nmcli dev scan
+

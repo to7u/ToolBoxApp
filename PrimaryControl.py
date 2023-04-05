@@ -1,29 +1,20 @@
 # -*- coding: utf-8 -*-
-import mod_lite
 
 # import するファイル名を記述(拡張子はいらない)
 # import output
 # output_text_class = output.output_class() # ファイル名.クラス名→インスタンス生成
 
-'''
-
-Linuxのみでの使用を想定しToolBoxAppより必要な機能のみを抽出したバージョン
-
-'''
+import mod
 
 class MainControl:
     menu_msg = """
-=== ToolBoxAppLITE Select menu ===
-
-[Download tools]
-[1] : WgetTool
+=== ToolBoxApp Select menu ===
 
 [Configuration tools]
-[2] : FireWallTool
-[3] : TorConfigTool
-
-[Convenient tools]
-[4] : WiFiAnalyzerTool
+[1] : FireWallTool
+[2] : MacChengerTool
+[3] : IpChengerTool
+[4] : TorConfigTool
 
 [Others]
 [h] : help
@@ -32,22 +23,22 @@ class MainControl:
 ==============================
 """
     help_msg = """
-=== ToolBoxAppLITE Select menu ===
-[Download tools]
-[1] : WgetTool
-対象URLを指定しサイト全体または、1階層のみを取得する
+=== ToolBoxApp Select menu ===
 
 [Configuration tools]
-[2] : FireWallTool
+[1] : FireWallTool
 ファイアーウォールのON/OFF,設定投入を行う
 (対応OS : Linux,Mac)
 
-[3] : TorConfigTool
-作成済み設定ファイルを読み込み、Tor Browserの接続ノード設定を変更する
+[2] : MacChengerTool
+対象インターフェースを指定しMACアドレスを変更する
 
-[Convenient tools]
-[7] : WiFiAnalyzerTool
-周辺のWiFiをスキャンしリアルタイムに詳細を表示する
+[3] : IpChengerTool
+対象インターフェースを指定しIPアドレスを変更する
+固定/自動による設定が可能
+
+[4] : TorConfigTool
+作成済み設定ファイルを読み込み、Tor Browserの接続ノード設定を変更する
 
 ==============================
 """
@@ -59,34 +50,32 @@ class MainControl:
             select_num = input('Please enter the menu number : ')
             # [q]を選択して終了するまでループさせる(breakを入れない)
             if select_num == '1':
-                # [1] : WgetTool
-                wget_tool = mod_lite.WgetTool()
-                print('Selected tool : ' + wget_tool.__class__.__name__)
-                # DEBUG
-                print("OK")
-                #wget_tool.run()
-                print('Processing completed : ' + wget_tool.__class__.__name__)
-                continue
-            elif select_num == '2':
-                # [2] : FireWallTool
-                firewall_tool = mod_lite.FirewallTool()
+                # [1] : FireWallTool
+                firewall_tool = mod.FirewallTool()
                 print('Selected tool : ' + firewall_tool.__class__.__name__)
                 firewall_tool.run()
                 print('Processing completed : ' + firewall_tool.__class__.__name__)
                 continue
+            elif select_num == '2':
+                # [2] : MacChengerTool
+                mac_chenger_tool = mod.MacChangeTool()
+                print('Selected tool : ' + mac_chenger_tool.__class__.__name__)
+                mac_chenger_tool.run()
+                print('Processing completed : ' + mac_chenger_tool.__class__.__name__)
+                continue
             elif select_num == '3':
-            	# [3] : TorConfigTool
-                tor_config_tool = mod_lite.TorConfigTool()
+                # [3] : IpChengerTool
+                ip_chenger_tool = mod.IpChangeTool()
+                print('Selected tool : ' + ip_chenger_tool.__class__.__name__)
+                ip_chenger_tool.run()
+                print('Processing completed : ' + ip_chenger_tool.__class__.__name__)
+                continue
+            elif select_num == '4':
+                # [4] : TorConfigTool
+                tor_config_tool = mod.TorConfigTool()
                 print('Selected tool : ' + tor_config_tool.__class__.__name__)
                 tor_config_tool.run()
                 print('Processing completed : ' + tor_config_tool.__class__.__name__)
-                continue
-            elif select_num == '4':
-                # [4] : WiFiAnalyzerTool
-                wifi_analyzer_tool = mod_lite.WiFiAnalayzerTool()
-                print('Selected tool : ' + wifi_analyzer_tool.__class__.__name__)
-                wifi_analyzer_tool.run()
-                print('Processing completed : ' + wifi_analyzer_tool.__class__.__name__)
                 continue
             elif select_num == 'h':
                 print(self.help_msg)
@@ -98,6 +87,7 @@ class MainControl:
                 print('Exited from processing.')
                 break
         print('All processing is completed.')
+
 
 if __name__ == "__main__":
     main_control = MainControl()
