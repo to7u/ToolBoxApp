@@ -1,20 +1,23 @@
-import mod_lite
+import subprocess
+
 '''
 
 RaspberryPi用
 Modeを切り替えるスクリプト
-mod_lite配下のモジュール使用
 
 '''
 
-# TODO 現在のmodeをフラグなどで保持して参照できるようにすると良いかもしれない
-
-class ModeChange:
-    # 各ツールのインスタンスを作成
-    wifi_conection_change_tool = mod_lite.WiFiConectionChangeTool() # wlan0 接続先変更
-    Wifi_mode_change_tool = mod_lite.WiFiModeChangeTool() # wlan1 WiFiモード変更
-    firewall_tool = mod_lite.FirewallTool() # Firewall 設定変更
-    macchange_tool = mod_lite.MacChangeTool() # Macaddress 設定変更
+class RpModeControl:
+    cmd_ap_open = "sh ./script/ApOpen.sh"
+    cmd_ap_close = "sh ./script/ApClose.sh"
+    cmd_createap_start = "sh ./script/CreateApStart.sh"
+    cmd_createap_stop = "sh ./script/CreateApStop.sh"
+    cmd_ufw_disable = "sh ./script/UfwDisable.sh"
+    cmd_ufw_enable = "sh ./script/UfwEnable.sh"
+    cmd_macchange_random_wlan0 = "sh ./script/MacchangeRandom_wlan0.sh"
+    cmd_macchange_random_wlan1 = "sh ./script/MacchangeRandom_wlan1.sh"
+    cmd_macchange_return_wlan0 = "sh ./script/MacchangeReturn_wlan0.sh"
+    cmd_macchange_return_wlan1 = "sh ./script/MacchangeReturn_wlan1.sh"
 
     menu_msg = '''/
 [Mode Change Menu]
@@ -44,6 +47,18 @@ WiFi : open
 UFW  : on
 MAC  : wlan0,1
 '''
+
+    def private_mode(self):
+        subprocess.run(cmd_ap_close,shell=True)
+        subprocess.run(,shell=True)
+        subprocess.run(show_cmd,shell=True)
+    def public_mode(self):
+    def open_mode(self):
+
+# TODO 現在のmodeを保持/参照できるようにする
+    def logging_status(self):
+    def show_status(self):
+
 
     def run(self):
         print(self.menu_msg)
@@ -81,5 +96,5 @@ MAC  : wlan0,1
 
 
 if __name__ == "__main__":
-    mode_change = ModeChange()
-    mode_change.run()
+    RpModeControl = RpModeControl()
+    RpModeControl.run()
