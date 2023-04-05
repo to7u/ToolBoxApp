@@ -4,6 +4,12 @@ from mod.MacChangeTool.MacChangeTool import MacChangeTool
 from mod.IpChangeTool.IpChangeTool import IpChangeTool
 from mod.TorConfigTool.TorConfigTool import TorConfigTool
 
+# TODO Draft -> mod
+from mod.NetworkScanTool.NetworkScanTool import NetworkScanTool
+from mod.ProxyScanTool.ProxyScanTool import ProxyScanTool
+from mod.WiFiScanTool.WiFiScanTool import WiFiScanTool
+from mod.WiFiConectionChangeTool.WiFiConectionChangeTool import WiFiConectionChangeTool
+
 # Secondary Tools
 from mod.WebScrapingTool.WebScrapingTool import WebScrapingTool
 from mod.WgetTool.WgetTool import WgetTool
