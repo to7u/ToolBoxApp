@@ -1,6 +1,6 @@
 #!/bin/bash
 macchanger -s wlan1
 sudo ifconfig wlan1 down
-macchanger -p wlan1
+sudo macchanger -p wlan1
 macchanger -s wlan1
 sudo ifconfig wlan1 up
