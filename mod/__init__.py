@@ -5,10 +5,10 @@ from mod.IpChangeTool.IpChangeTool import IpChangeTool
 from mod.TorConfigTool.TorConfigTool import TorConfigTool
 
 # TODO Draft -> mod
-from mod.NetworkScanTool.NetworkScanTool import NetworkScanTool
+from mod.NwScanTool.NwScanTool import NwScanTool
 from mod.ProxyScanTool.ProxyScanTool import ProxyScanTool
 from mod.WiFiScanTool.WiFiScanTool import WiFiScanTool
-from mod.WiFiConectionChangeTool.WiFiConectionChangeTool import WiFiConectionChangeTool
+from mod.WiFiConnectionTool.WiFiConnectionTool import WiFiConnectionTool
 
 # Secondary Tools
 from mod.WebScrapingTool.WebScrapingTool import WebScrapingTool
