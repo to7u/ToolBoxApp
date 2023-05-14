@@ -4,24 +4,29 @@ class NordVpnTool:
     def show_Country(self):
         cmd = "nordvpn countries"
         print(cmd)
+        subprocess.run(cmd, shell=True)
 
     def vpn_status(self):
         cmd = "nordvpn status"
         print(cmd)
+        subprocess.run(cmd, shell=True)
 
     def vpn_connect(self):
         country = input("Please enter your country : ")
         cmd = f"nordvpn c {country}"
         print(cmd)
+        subprocess.run(cmd, shell=True)
     
     def vpn_disconnect(self):
         cmd = "nordvpn d"
         print(cmd)
+        subprocess.run(cmd, shell=True)
     
     def vpn_connect_double(self):
         country = input("Please enter your country : ")
         cmd = f"nordvpn connect --group double_vpn {country}"
         print(cmd)
+        subprocess.run(cmd, shell=True)
     
     def run(self):
         menu_msg = '''/
@@ -31,7 +36,7 @@ class NordVpnTool:
 [2] : Show VPN status
 [3] : Connect to VPN
 [4] : Connect to Dubule VPN
-[5] : Connect to VPN
+[5] : Disconnect to VPN
 
 [q] : quit
 '''
