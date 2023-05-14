@@ -43,6 +43,9 @@ class WebScrapingTool:
 			os.makedirs(os.path.join(path,dirname),exist_ok=True)
 
 			for link in images:
+				ext = os.path.splitext(link)[-1].lower()
+				if ext not in ('.jpg', '.jpeg', '.png', '.gif'):
+					continue
 				re = requests.get(link)
 				print("Download:",link)
 				with open(os.path.join(path,dirname,link.split("/")[-1]),"wb") as f: 
