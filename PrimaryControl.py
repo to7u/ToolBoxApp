@@ -15,6 +15,7 @@ class MainControl:
 [2] : MacChengerTool
 [3] : IpChengerTool
 [4] : TorConfigTool
+[5] : NordVpnTool
 
 [Others]
 [h] : help
@@ -39,6 +40,9 @@ class MainControl:
 
 [4] : TorConfigTool
 作成済み設定ファイルを読み込み、Tor Browserの接続ノード設定を変更する
+
+[5] : NordVpnTool
+NordVPNの操作を行う
 
 ==============================
 """
@@ -76,6 +80,13 @@ class MainControl:
                 print('Selected tool : ' + tor_config_tool.__class__.__name__)
                 tor_config_tool.run()
                 print('Processing completed : ' + tor_config_tool.__class__.__name__)
+                continue
+            elif select_num == '5':
+                # [5] : NordVpnTool
+                nord_vpn_tool = mod.NordVpnTool()
+                print('Selected tool : ' + nord_vpn_tool.__class__.__name__)
+                nord_vpn_tool.run()
+                print('Processing completed : ' + nord_vpn_tool.__class__.__name__)
                 continue
             elif select_num == 'h':
                 print(self.help_msg)

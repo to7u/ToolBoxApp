@@ -9,7 +9,7 @@ class ProxyScanTool:
         #self.result_file = result_file
         self.ip_port_list_file = "./poxy_list.csv"
         self.result_file = './proxy_scan_result.txt'
-PingProxy
+
     # 対象ipから情報を入手するmethod
     def get_info(self,ip,port):
         req_url = "http://ipinfo.io/" + ip
