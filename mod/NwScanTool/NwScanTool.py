@@ -29,9 +29,6 @@ class NwScanTool:
 
                 f.write("\n")
 
-    def run(self):
-        self.scan_network()
-
 if __name__ == '__main__':
     network_scan_tool = NwScanTool()
     network_scan_tool.run()
