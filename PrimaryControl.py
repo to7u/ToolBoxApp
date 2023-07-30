@@ -18,10 +18,10 @@ class MainControl:
 [5] : NordVpnTool
 
 [Test : Draft tools]
-[5] : ProxyScanTool
-[6] : NwSanTool
-[7] : WiFiScanTool
-[8] : WiFiConnectionTool
+[6] : ProxyScanTool
+[7] : NwSanTool
+[8] : WiFiScanTool
+[9] : WiFiConnectionTool
 
 [Others]
 [h] : help
@@ -49,6 +49,15 @@ class MainControl:
 
 [5] : NordVpnTool
 NordVPNの操作を行う
+
+[6] : ProxyScanTool
+特定のCSVに記載されたIP/Portリストを元に稼働状況をスキャンする
+
+[7] : NwSanTool
+
+[8] : WiFiScanTool
+
+[9] : WiFiConnectionTool
 
 ==============================
 """
@@ -96,24 +105,28 @@ NordVPNの操作を行う
                 continue
             # Test Draft tools
             elif select_num == '6':
+                # [6] : ProxyScanTool
                 proxy_scan_tool = mod.ProxyScanTool()
                 print('Selected tool : ' + proxy_scan_tool.__class__.__name__)
                 proxy_scan_tool.run()
                 print('Processing completed : ' + proxy_scan_tool.__class__.__name__)
                 continue
             elif select_num == '7':
+                # [7] : NwScanTool
                 nw_scan_tool = mod.NwScanTool()
                 print('Selected tool : ' + nw_scan_tool.__class__.__name__)
                 nw_scan_tool.run()
                 print('Processing completed : ' + nw_scan_tool.__class__.__name__)
                 continue
             elif select_num == '8':
+                # [8] : WiFiScanTool
                 wifi_scan_tool = mod.WiFiScanTool()
                 print('Selected tool : ' + wifi_scan_tool.__class__.__name__)
                 wifi_scan_tool.run()
                 print('Processing completed : ' + wifi_scan_tool.__class__.__name__)
                 continue
             elif select_num == '9':
+                # [9] : WiFiConnectionTool
                 wifi_connection_tool = mod.WiFiConnectionTool()
                 print('Selected tool : ' + wifi_connection_tool.__class__.__name__)
                 wifi_connection_tool.run()

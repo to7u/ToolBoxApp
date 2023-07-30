@@ -7,7 +7,8 @@ class ProxyScanTool:
     def __init__(self):
         #self.ip_port_list_file = ip_port_list_file
         #self.result_file = result_file
-        self.ip_port_list_file = "./config/ProxyList.csv"
+        #self.ip_port_list_file = "./config/ProxyList.csv"
+        self.ip_port_list_file = "./config/SocksProxyList.csv"
         self.result_file = './log/proxy_scan_result.txt'
 
     # 対象ipから情報を入手するmethod
