@@ -9,27 +9,31 @@ import subprocess
 $ macchanger -s {対象インターフェース}
 
 ●ランダムな MAC アドレスに設定
-$ ifconfig {対象インターフェース} down
+$ ip link set {対象インターフェース} down
 $ macchanger -r {対象インターフェース}
-$ ifconfig {対象インターフェース} up
+$ ip link set {対象インターフェース} up
 
 ●元に戻す
-$ ifconfig {対象インターフェース} down
+$ ip link set {対象インターフェース} down
 $ macchanger -p {対象インターフェース}
-$ ifconfig {対象インターフェース} up
+$ ip link set {対象インターフェース} up
 
 ●指定の MAC アドレスに設定
-$ ifconfig {対象インターフェース} down
+$ ip link set {対象インターフェース} down
 $ macchanger -m 00:11:22:33:44:55 {対象インターフェース}
 '''
 
 class MacChangeTool:
+    def interface_show():
+        cmd = "ip a"
+        subprocess.run(cmd, shell=True)
+
     def interface_down(self, interface):
-        cmd = f"ifconfig {interface} down"
+        cmd = f"sudo ip link set {interface} down"
         subprocess.run(cmd, shell=True)
 
     def interface_up(self, interface):
-        cmd = f"ifconfig {interface} up"
+        cmd = f"sudo ip link set {interface} up"
         subprocess.run(cmd, shell=True)
 
     def show_mac(self, interface):
@@ -61,6 +65,7 @@ class MacChangeTool:
 '''     
         print(menu_msg)
         while True:
+            self.interface_show()
             answer = input('Please select a menu : ')
             if answer == '1':
                 # show_mac
@@ -107,6 +112,9 @@ class MacChangeTool:
                     break
             elif answer == 'q':
                 break
+            else:
+                print("Please enter agein.")
+        print("Processing is complete.")
 
 
 if __name__ == "__main__":

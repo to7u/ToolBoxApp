@@ -4,6 +4,7 @@
 .AppleDouble
 .LSOverride
 my_config.ini
+log/
 
 # Icon must end with two \r
 Icon
@@ -132,6 +133,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-
 log/*
 __pycache__
+

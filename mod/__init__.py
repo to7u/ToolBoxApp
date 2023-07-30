@@ -3,6 +3,7 @@ from mod.FirewallTool.FirewallTool import FirewallTool
 from mod.MacChangeTool.MacChangeTool import MacChangeTool
 from mod.IpChangeTool.IpChangeTool import IpChangeTool
 from mod.TorConfigTool.TorConfigTool import TorConfigTool
+from mod.NordVpnTool.NordVpnTool import NordVpnTool
 
 # TODO Draft -> mod
 from mod.NwScanTool.NwScanTool import NwScanTool

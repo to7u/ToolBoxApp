@@ -6,7 +6,7 @@ class NwScanTool:
         #target_network = input("Enter address : ")  # スキャンするネットワークの範囲を指定
         self.target_file = './log/nw_scan_results.txt'  # 結果を保存するファイル名を指定
 
-    def scan_network(self):
+    def run(self):
         target_network = input("Enter address : ")  # スキャンするネットワークの範囲を指定
         #target_file = 'nw_scan_results.txt'  # 結果を保存するファイル名を指定
         nm = nmap.PortScanner()
@@ -33,5 +33,5 @@ class NwScanTool:
         self.scan_network()
 
 if __name__ == '__main__':
-    nw_scan_tool = NwScanTool()
-    nw_scan_tool.run()
+    network_scan_tool = NwScanTool()
+    network_scan_tool.run()

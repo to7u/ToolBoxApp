@@ -15,6 +15,7 @@ class MainControl:
 [2] : MacChengerTool
 [3] : IpChengerTool
 [4] : TorConfigTool
+[5] : NordVpnTool
 
 [Test : Draft tools]
 [5] : ProxyScanTool
@@ -45,6 +46,9 @@ class MainControl:
 
 [4] : TorConfigTool
 作成済み設定ファイルを読み込み、Tor Browserの接続ノード設定を変更する
+
+[5] : NordVpnTool
+NordVPNの操作を行う
 
 ==============================
 """
@@ -83,26 +87,33 @@ class MainControl:
                 tor_config_tool.run()
                 print('Processing completed : ' + tor_config_tool.__class__.__name__)
                 continue
-            # Test Draft tools
             elif select_num == '5':
+                # [5] : NordVpnTool
+                nord_vpn_tool = mod.NordVpnTool()
+                print('Selected tool : ' + nord_vpn_tool.__class__.__name__)
+                nord_vpn_tool.run()
+                print('Processing completed : ' + nord_vpn_tool.__class__.__name__)
+                continue
+            # Test Draft tools
+            elif select_num == '6':
                 proxy_scan_tool = mod.ProxyScanTool()
                 print('Selected tool : ' + proxy_scan_tool.__class__.__name__)
                 proxy_scan_tool.run()
                 print('Processing completed : ' + proxy_scan_tool.__class__.__name__)
                 continue
-            elif select_num == '6':
+            elif select_num == '7':
                 nw_scan_tool = mod.NwScanTool()
                 print('Selected tool : ' + nw_scan_tool.__class__.__name__)
                 nw_scan_tool.run()
                 print('Processing completed : ' + nw_scan_tool.__class__.__name__)
                 continue
-            elif select_num == '7':
+            elif select_num == '8':
                 wifi_scan_tool = mod.WiFiScanTool()
                 print('Selected tool : ' + wifi_scan_tool.__class__.__name__)
                 wifi_scan_tool.run()
                 print('Processing completed : ' + wifi_scan_tool.__class__.__name__)
                 continue
-            elif select_num == '8':
+            elif select_num == '9':
                 wifi_connection_tool = mod.WiFiConnectionTool()
                 print('Selected tool : ' + wifi_connection_tool.__class__.__name__)
                 wifi_connection_tool.run()
