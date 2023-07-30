@@ -1,10 +1,10 @@
 # pip install python-nmap
 import nmap
 
-class NetworkScanTool:
+class NwScanTool:
     def __init__(self):
         #target_network = input("Enter address : ")  # スキャンするネットワークの範囲を指定
-        target_file = 'nw_scan_results.txt'  # 結果を保存するファイル名を指定
+        self.target_file = './log/nw_scan_results.txt'  # 結果を保存するファイル名を指定
 
     def scan_network(self):
         target_network = input("Enter address : ")  # スキャンするネットワークの範囲を指定
@@ -29,6 +29,9 @@ class NetworkScanTool:
 
                 f.write("\n")
 
+    def run(self):
+        self.scan_network()
+
 if __name__ == '__main__':
-    network_scan_tool = NetworkScanTool()
-    network_scan_tool.scan_network()
+    nw_scan_tool = NwScanTool()
+    nw_scan_tool.run()

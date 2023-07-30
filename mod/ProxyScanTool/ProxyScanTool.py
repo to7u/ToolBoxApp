@@ -4,12 +4,12 @@ import requests
 import json
 
 class ProxyScanTool:
-    def __init__(self, ip_port_list_file, result_file):
+    def __init__(self):
         #self.ip_port_list_file = ip_port_list_file
         #self.result_file = result_file
-        self.ip_port_list_file = "./poxy_list.csv"
-        self.result_file = './proxy_scan_result.txt'
-PingProxy
+        self.ip_port_list_file = "./config/ProxyList.csv"
+        self.result_file = './log/proxy_scan_result.txt'
+
     # 対象ipから情報を入手するmethod
     def get_info(self,ip,port):
         req_url = "http://ipinfo.io/" + ip
@@ -50,10 +50,13 @@ PingProxy
                     #f.write(message)
                     #print(message)
 
+    def run(self):
+        self.scan_proxy()
+
 if __name__ == "__main__":
     # PingCheckerのインスタンスを作成して、checkメソッドを実行する
     #checker = PingChecker('ip_port_list.csv', 'ping_result.txt')
     #checker.proxy_scan()
 
     proxt_scan_tool = ProxyScanTool()
-    proxt_scan_tool.proxy_scan()
+    proxt_scan_tool.run()

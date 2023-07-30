@@ -16,6 +16,12 @@ class MainControl:
 [3] : IpChengerTool
 [4] : TorConfigTool
 
+[Test : Draft tools]
+[5] : ProxyScanTool
+[6] : NwSanTool
+[7] : WiFiScanTool
+[8] : WiFiConnectionTool
+
 [Others]
 [h] : help
 [q] : quit
@@ -76,6 +82,31 @@ class MainControl:
                 print('Selected tool : ' + tor_config_tool.__class__.__name__)
                 tor_config_tool.run()
                 print('Processing completed : ' + tor_config_tool.__class__.__name__)
+                continue
+            # Test Draft tools
+            elif select_num == '5':
+                proxy_scan_tool = mod.ProxyScanTool()
+                print('Selected tool : ' + proxy_scan_tool.__class__.__name__)
+                proxy_scan_tool.run()
+                print('Processing completed : ' + proxy_scan_tool.__class__.__name__)
+                continue
+            elif select_num == '6':
+                nw_scan_tool = mod.NwScanTool()
+                print('Selected tool : ' + nw_scan_tool.__class__.__name__)
+                nw_scan_tool.run()
+                print('Processing completed : ' + nw_scan_tool.__class__.__name__)
+                continue
+            elif select_num == '7':
+                wifi_scan_tool = mod.WiFiScanTool()
+                print('Selected tool : ' + wifi_scan_tool.__class__.__name__)
+                wifi_scan_tool.run()
+                print('Processing completed : ' + wifi_scan_tool.__class__.__name__)
+                continue
+            elif select_num == '8':
+                wifi_connection_tool = mod.WiFiConnectionTool()
+                print('Selected tool : ' + wifi_connection_tool.__class__.__name__)
+                wifi_connection_tool.run()
+                print('Processing completed : ' + wifi_connection_tool.__class__.__name__)
                 continue
             elif select_num == 'h':
                 print(self.help_msg)
