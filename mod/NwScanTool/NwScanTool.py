@@ -4,7 +4,7 @@ import nmap
 class NwScanTool:
     def __init__(self):
         #target_network = input("Enter address : ")  # スキャンするネットワークの範囲を指定
-        target_file = 'nw_scan_results.txt'  # 結果を保存するファイル名を指定
+        self.target_file = './log/nw_scan_results.txt'  # 結果を保存するファイル名を指定
 
     def run(self):
         target_network = input("Enter address : ")  # スキャンするネットワークの範囲を指定
@@ -28,6 +28,9 @@ class NwScanTool:
                             f.write(f"port : {port}\tstate : {service['state']}\tservice : {service['name']}\tversion : {service['version']}\n")
 
                 f.write("\n")
+
+    def run(self):
+        self.scan_network()
 
 if __name__ == '__main__':
     network_scan_tool = NwScanTool()

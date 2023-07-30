@@ -17,6 +17,12 @@ class MainControl:
 [4] : TorConfigTool
 [5] : NordVpnTool
 
+[Test : Draft tools]
+[5] : ProxyScanTool
+[6] : NwSanTool
+[7] : WiFiScanTool
+[8] : WiFiConnectionTool
+
 [Others]
 [h] : help
 [q] : quit
@@ -87,6 +93,31 @@ NordVPNの操作を行う
                 print('Selected tool : ' + nord_vpn_tool.__class__.__name__)
                 nord_vpn_tool.run()
                 print('Processing completed : ' + nord_vpn_tool.__class__.__name__)
+                continue
+            # Test Draft tools
+            elif select_num == '6':
+                proxy_scan_tool = mod.ProxyScanTool()
+                print('Selected tool : ' + proxy_scan_tool.__class__.__name__)
+                proxy_scan_tool.run()
+                print('Processing completed : ' + proxy_scan_tool.__class__.__name__)
+                continue
+            elif select_num == '7':
+                nw_scan_tool = mod.NwScanTool()
+                print('Selected tool : ' + nw_scan_tool.__class__.__name__)
+                nw_scan_tool.run()
+                print('Processing completed : ' + nw_scan_tool.__class__.__name__)
+                continue
+            elif select_num == '8':
+                wifi_scan_tool = mod.WiFiScanTool()
+                print('Selected tool : ' + wifi_scan_tool.__class__.__name__)
+                wifi_scan_tool.run()
+                print('Processing completed : ' + wifi_scan_tool.__class__.__name__)
+                continue
+            elif select_num == '9':
+                wifi_connection_tool = mod.WiFiConnectionTool()
+                print('Selected tool : ' + wifi_connection_tool.__class__.__name__)
+                wifi_connection_tool.run()
+                print('Processing completed : ' + wifi_connection_tool.__class__.__name__)
                 continue
             elif select_num == 'h':
                 print(self.help_msg)
